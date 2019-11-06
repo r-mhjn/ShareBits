@@ -4,7 +4,8 @@ import {
 	Button,
 } from 'react-native';
 
-import Nearby2,{startAdvertising} from 'react-native-nearby2';
+import Nearby2 from 'react-native-nearby2';
+import MainScreenComponent from './components/MainScreen.component';
 
 const App = () => {
 	// let xx=()=>{
@@ -15,7 +16,7 @@ const App = () => {
 	// xx();
 	const [advertisingMessage,setAdvertisingMessage]=useState("");
 	let startAdvertisingNow=()=>{
-		Nearby2.startAdvertising()
+		Nearby2.startAdvertising("nick")
 		.then(()=>{
 			setAdvertisingMessage("advertising!");
 		})
@@ -37,9 +38,10 @@ const App = () => {
 
   return (
     <>
-	<Button title="start advertising" onPress={()=>{startAdvertisingNow()}}></Button>
+	{/* <Button title="start advertising" onPress={()=>{startAdvertisingNow()}}></Button>
 	<Button title="stop advertising" onPress={()=>{stopAdvertisingNow()}}></Button>
-      <Text>{advertisingMessage}</Text>
+	  <Text>{advertisingMessage}</Text> */}
+	  <MainScreenComponent/>
     </>
   );
 };
