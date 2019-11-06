@@ -1,18 +1,19 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-export default MaterialButtonPrimary=(props)=> {
+export default MaterialButtonPink1 = (props) => {
 
 	return (
 		<TouchableOpacity style={[styles.container, props.style]} onPress={props.onPress}>
 			<Text style={styles.caption}>{props.text}</Text>
 		</TouchableOpacity>
 	);
+
 }
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: "#2196F3",
+		backgroundColor: "#E91E63",
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",

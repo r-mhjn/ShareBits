@@ -1,16 +1,15 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import MaterialButtonPrimary from "./MaterialButtonPrimary";
-export default MainScreen = () => {
+export default MainScreen = (props) => {
 
 	return (
 		<View style={styles.container}>
-			<MaterialButtonPrimary style={styles.materialButtonPrimary} text="Send File" />
-			<MaterialButtonPrimary style={styles.materialButtonPrimary2} text="Recieve file" />
+			<MaterialButtonPrimary style={styles.materialButtonPrimary} onPress={()=>{props.setShowScreen(1)}} text="Send File" />
+			<MaterialButtonPrimary style={styles.materialButtonPrimary2} onPress={()=>{props.setShowScreen(2)}} text="Recieve file" />
 		</View>
 	);
 }
-
 
 const styles = StyleSheet.create({
 	container: {
