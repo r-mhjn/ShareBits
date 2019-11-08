@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 require('dotenv').config();
 
+const fileRouter = require('./routes/file');
+
 const app = express();
 
 const port = process.env.PORT | 5000;
@@ -19,6 +21,7 @@ connection.once('open', () => {
 
 app.use(morgan('short'));
 app.use(express.json());
+app.use('/file', fileRouter);
 
 app.listen(port, () => {
 	console.log("server up on port " + port)
