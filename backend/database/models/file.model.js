@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
 const fileSchema = new mongoose.Schema({
-	name: { type: String, required: true, max: 100 },
-	encodedName: { type: String, required: false, max: 100, default: null }
+	url: { type: String, required: true, max: 10, default: null },
+	originalName: { type: String, required: true, max: 100 },
+	multerName: { type: String, required: true, max: 100, default: null },
+	mimeType: { type: String, required: true, default: null },
 }, {
 		timestamps: true
 	});
