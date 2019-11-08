@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Axios from 'axios'
 
 export default function UploadFile() {
-
+	const [fileUrl, setFileUrl] = useState('');
 	const fileInput = React.createRef();
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -16,6 +16,7 @@ export default function UploadFile() {
 		})
 			.then((res) => {
 				console.log(res.data)
+				setFileUrl(res.data.url);
 			})
 			.catch(err => {
 				console.log(err)
@@ -24,6 +25,7 @@ export default function UploadFile() {
 
 	return (
 		<div>
+			<h1>{fileUrl}</h1>
 			<form onSubmit={handleSubmit}>
 				<input type="file" ref={fileInput} />
 				<input type="submit" value="submit" />
