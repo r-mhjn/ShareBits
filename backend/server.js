@@ -20,6 +20,11 @@ connection.once('open', () => {
 	console.error('error connecting to the database');
 });
 
+console.log(__dirname+'/public/build');
+
+app.use('/',express.static(__dirname+'/../frontend-app/build'));
+// app.use('/:name',express.static(__dirname+'/public/build'));
+
 app.use(cors());
 app.use(morgan('short'));
 app.use(express.json());
