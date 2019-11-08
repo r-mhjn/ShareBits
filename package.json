@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.4",
+    "react-native-document-picker": "^3.2.4",
     "react-native-nearby2": "file:/home/rd/native_modules/react-native-nearby2/",
     "react-native-prompt": "^1.0.0",
     "react-native-prompt-android": "^1.1.0",
