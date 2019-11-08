@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Aleo-Bold
+font link: https://alessiolaiso.com/aleo-font
+font author: Alessio Laiso
+font author site: https://alessiolaiso.com/
+Slogan Font: Aleo-Bold
+
+icon designer: P.J. Onori
+icon designer link: /somerandomdude
+        
+{"bg-gradient-0":"#E9007F","bg-gradient-1":"#FEA134","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      
