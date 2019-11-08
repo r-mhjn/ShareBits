@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const cors = require('cors');
 require('dotenv').config();
 
 const fileRouter = require('./routes/file');
@@ -19,6 +20,7 @@ connection.once('open', () => {
 	console.error('error connecting to the database');
 });
 
+app.use(cors());
 app.use(morgan('short'));
 app.use(express.json());
 app.use('/file', fileRouter);
