@@ -54,6 +54,18 @@ router.route('/upload').post(uploadFile, (req, res) => {
 		})
 });
 
+router.route('/download/:link/info').get((req, res) => {
+	const link = req.params.link;
+	File.findOne({ url: link })
+		.then(file => {
+			const { originalName } = file;
+			res.json({ originalName });
+		})
+		.catch(err => {
+			res.json(err);
+		});
+})
+
 router.route('/download/:link').get((req, res) => {
 	const link = req.params.link
 	console.log(link)
