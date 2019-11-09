@@ -6,14 +6,20 @@ const displayQr = (link) => {
 	QRCode.generate(link, { small: true });
 }
 
-const uploadFile = (path, callback) => {
-	if (!fs.existsSync(path)) {
-		console.error('invalid path')
-		return false;
-	}
+const uploadFile = (pathArray, callback) => {
+	let fileArray = [];
+	// fileArray.push(fs.createReadStream(pathArray[0]));
+	pathArray.forEach(path => {
+		if (!fs.existsSync(path)) {
+			console.error('invalid path')
+			return false;
+		} else {
+			fileArray.push(fs.createReadStream(path));
+		}
+	})
 	// console.log(path)
 	let formData = {
-		file: fs.createReadStream(path)
+		file: fileArray
 	}
 	// axios.post('http://localhost:5000/file/upload', {
 	// 	headers: {
@@ -29,7 +35,7 @@ const uploadFile = (path, callback) => {
 	// 	});
 	// fs.createReadStream(path).pipe(request.post('http://localhost:5000/file/upload'))
 	console.log('uploading file...')
-	request.post('http://www.shbt.live/file/upload', {
+	request.post('http://localhost:5000/file/upload', {
 		headers: {
 			'Content-Type': 'multipart/form-data'
 		},

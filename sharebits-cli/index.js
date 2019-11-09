@@ -3,11 +3,13 @@
 const yargs = require('yargs')
 // const axios = require('axios')
 const uploadModule = require('./uploadModule');
+const downloadModule = require('./downloadModule');
 
 const upload_options = {
 	describe: 'name of file to be uploded',
 	demand: 'true',
-	alias: 'f'
+	alias: 'f',
+	type: 'array'
 }
 const download_options = {
 	describe: 'unique identifier',
@@ -17,7 +19,7 @@ const download_options = {
 
 const argv = yargs
 	.command('push', 'Upload a file', {
-		file: upload_options
+		file: upload_options,
 	})
 	.command('get', 'Download a file', {
 		uid: download_options
@@ -30,13 +32,19 @@ let choice = argv._[0];
 switch (choice) {
 	case 'push':
 		//upload file
-		const filePath = argv.file;
-		uploadModule.uploadFile(filePath, (result) => {
+		const filePathArray = argv.file;
+		console.log(filePathArray)
+		uploadModule.uploadFile(filePathArray, (result) => {
 			console.log(result ? 'file uploaded successfully' : 'failed to upload file(s).')
 		});
 		break;
 	case 'get':
-	//download file
+		//download file
+		const uid = argv.uid;
+		downloadModule.downloadFile(uid, (result) => {
+			console.log(result ? 'file downloaded successfully' : 'failed to download file(s).')
+		});
+		break;
 	default:
 		console.log('invalid option')
 		break;

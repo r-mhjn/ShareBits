@@ -3,7 +3,7 @@ const multer = require('multer');
 const shortid = require('shortid');
 const File = require('../database/models/file.model');
 
-shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_');
 
 const limits = { fileSize: 1024 * 1024 * 50 }
 const storage = multer.diskStorage({
@@ -19,9 +19,10 @@ const storage = multer.diskStorage({
 
 
 
-const upload = multer({ storage: storage, limits }).single('file');
+const upload = multer({ storage: storage, limits }).array('file');
 
 const uploadFile = (req, res, next) => {
+
 	upload(req, res, (err) => {
 		if (err) {
 			if (err.code === 'LIMIT_FILE_SIZE') {
@@ -36,22 +37,29 @@ const uploadFile = (req, res, next) => {
 	});
 }
 
+const saveFileToDatabase = async (file) => {
+	return await file.save()
+}
 router.route('/upload').post(uploadFile, (req, res) => {
 	// console.log('saved ' + req.file.originalname)
 	// console.log(shortid())
-	const file = new File({
-		url: shortid(),
-		originalName: req.file.originalname,
-		multerName: req.file.filename,
-		mimeType: req.file.mimetype
-	});
-	file.save()
-		.then(() => {
-			res.json(file);
-		})
-		.catch(err => {
-			res.json(err);
-		})
+	console.log(req.files)
+	const url = shortid();
+	req.files.forEach(file => {
+		const newfile = new File({
+			url: url,
+			originalName: file.originalname,
+			multerName: file.filename,
+			mimeType: file.mimetype
+		});
+		saveFileToDatabase(newfile)
+			.then()
+			.catch(err => {
+				return res.json(err);
+			})
+	})
+	res.json({ url });
+
 });
 
 router.route('/download/:link/info').get((req, res) => {
@@ -62,7 +70,7 @@ router.route('/download/:link/info').get((req, res) => {
 			res.json({ originalName });
 		})
 		.catch(err => {
-			res.json(err);
+			res.status(404).json(err);
 		});
 })
 
