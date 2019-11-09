@@ -35,7 +35,7 @@ const uploadFile = (pathArray, callback) => {
 	// 	});
 	// fs.createReadStream(path).pipe(request.post('http://localhost:5000/file/upload'))
 	console.log('uploading file...')
-	request.post('http://localhost:5000/file/upload', {
+	request.post('http://www.shbt.live/file/upload', {
 		headers: {
 			'Content-Type': 'multipart/form-data'
 		},
