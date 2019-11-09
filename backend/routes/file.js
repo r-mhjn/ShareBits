@@ -72,10 +72,11 @@ router.route('/download/:link/info').get((req, res) => {
 			if (files.length > 1) {
 				return res.json({ originalName: "files.zip" });
 			}
-			const { originalName } = file;
+			const { originalName } = files[0];
 			res.json({ originalName });
 		})
 		.catch(err => {
+			// console.log(err)
 			res.status(404).json(err);
 		});
 })
@@ -124,9 +125,9 @@ router.route('/download/:link').get((req, res) => {
 				res.status(404);
 			}
 			//console.log(fs.readFileSync(__dirname + '/../uploads/' + files[1].multerName))
-			console.log('found file ' + file.originalName)
-			console.log('sending file ' + file.multerName)
-			console.log(__dirname)
+			// console.log('found file ' + file.originalName)
+			// console.log('sending file ' + file.multerName)
+			// console.log(__dirname)
 			// res.setHeader({
 			// 	"Content-Disposition": `attachment;filename=${file.originalName}`,
 			// 	"Content-Type": `${file.mimeType}`,

@@ -3,13 +3,13 @@ const axios = require('axios')
 
 const fetchInfo = (link, callback) => {
 	console.log('fetching file info')
-	axios.get('http://shbt.live/file/download/' + link + '/info')
+	axios.get('http://www.shbt.live/file/download/' + link + '/info')
 		.then(res => {
 			// console.log(res.data)
 			callback(res.data);
 		})
 		.catch(err => {
-			// console.log(err)
+			// console.log(err.data)
 			callback({});
 		});
 }
@@ -22,7 +22,7 @@ const downloadFile = (link, callback) => {
 		}
 		console.log('downloading file')
 		const file = fs.createWriteStream(info.originalName);
-		axios.get('http://shbt.live/file/download/' + link, { responseType: 'stream' })
+		axios.get('http://www.shbt.live/file/download/' + link, { responseType: 'stream' })
 			.then(res => {
 				res.data.pipe(file);
 			})
