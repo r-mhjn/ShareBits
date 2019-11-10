@@ -23,7 +23,10 @@ connection.once('open', () => {
 console.log(__dirname+'/public/build');
 
 app.use('/',express.static(__dirname+'/../frontend-app/build'));
-app.use('/:link',express.static(__dirname+'/../frontend-download-app/build'));
+// app.use('/download',express.static(__dirname+'/../frontend-download-app/build'));
+app.get('/:link',(req,res)=>{
+	res.sendFile(__dirname+'/../frontend-download-app/build/index.html');
+})
 
 app.use(cors());
 app.use(morgan('short'));
