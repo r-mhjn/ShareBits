@@ -120,7 +120,7 @@ router.route('/download/:link').get((req, res) => {
 				return;
 
 			} else if (files.length === 1) {
-				return res.download(__dirname + '/../uploads/' + file.multerName, file.originalName);
+				return res.download('uploads/' + file.multerName, file.originalName);
 			} else {
 				res.status(404);
 			}

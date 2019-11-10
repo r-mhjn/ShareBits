@@ -4,7 +4,7 @@
 	"description": "share files anywhere",
 	"main": "index.js",
 	"bin": {
-		"sb": "./bin/index.js"
+		"sb": "./index.js"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
