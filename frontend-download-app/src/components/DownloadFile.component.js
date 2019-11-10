@@ -5,7 +5,7 @@ export default function DownloadFile() {
 	let url = new URL(window.location);
 	let link = url.pathname;
 	console.log(link)
-	window.location='http://localhost:5000/file/download'+link
+	window.location='http://www.shbt.live/file/download'+link
 	// Axios.post('http://localhost:5000/file/download' + link, {
 	// 	responseType: 'arraybuffer',
 	// 	headers: {'Content-Type': "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
