@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core';
+// import FileDrop from 'react-file-drop'
 
 const theme = createMuiTheme({
 	overrides: {
@@ -32,6 +33,11 @@ export default function UploadFile() {
 	const [filename, setFilename] = useState('');
 	const changeFile = (name) => {
 		if (name.target.files === undefined) { return }
+		if(name.target.files.length>1){
+			console.log('multiple!')
+			setFilename("multiple files!");
+			return;
+		}
 		console.log(name.target.files[0].name)
 		setFilename(name.target.files[0].name);
 	}
@@ -70,7 +76,7 @@ export default function UploadFile() {
 
 					<Grid container>
 						<Grid item xs={6}>
-
+							{/* <FileDrop onDrop={(e)=>{console.log(e)}}/> */}
 							<input
 								accept=""
 								id="outlined-button-file"
