@@ -12,7 +12,7 @@ const uploadText = (text, callback) => {
 	})
 		.then(res => {
 			console.log('share link: ' + 'http://www.shbt.live/text/download/' + res.data.url);
-			// displayQr('http://shbt.live/' + res.data.url);
+			displayQr('http://www.shbt.live/text/download/' + res.data.url);
 			callback(true)
 		})
 		.catch(err => {
@@ -23,10 +23,10 @@ const uploadText = (text, callback) => {
 
 const downloadText = (link) => {
 	console.log('downloading text...')
-	axios.get('http://www.shbt.live/text/download/'+link)
+	axios.get('http://shbt.live/text/download/'+link)
 		.then(res => {
 			console.log('heres the text: ')
-			console.log(res.data.data)
+			console.log(res.data)
 		})
 		.catch(err => {
 			console.log('network err')
