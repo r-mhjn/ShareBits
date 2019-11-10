@@ -5,6 +5,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const fileRouter = require('./routes/file');
+const textRouter = require('./routes/text');
 
 const app = express();
 
@@ -24,19 +25,20 @@ app.use(cors());
 app.use(morgan('short'));
 app.use(express.json());
 app.use('/file', fileRouter);
+app.use('/text', textRouter);
 
-app.use(express.static(__dirname+'/../frontend-app/build'));
-app.use(express.static(__dirname+'/../frontend-download-app/build'));
+app.use(express.static(__dirname + '/../frontend-app/build'));
+app.use(express.static(__dirname + '/../frontend-download-app/build'));
 
-app.get('/',(req,res)=>{
-	const link=req.params.link
+app.get('/', (req, res) => {
+	const link = req.params.link
 	console.log(link)
-	res.sendFile('index.html',{root:__dirname+'/../frontend-app/build'});
+	res.sendFile('index.html', { root: __dirname + '/../frontend-app/build' });
 })
-app.get('/:link',(req,res)=>{
-	const link=req.params.link
+app.get('/:link', (req, res) => {
+	const link = req.params.link
 	console.log(link)
-	res.sendFile('index.html',{root:__dirname+'/../frontend-download-app/build'});
+	res.sendFile('index.html', { root: __dirname + '/../frontend-download-app/build' });
 })
 
 app.listen(port, () => {
