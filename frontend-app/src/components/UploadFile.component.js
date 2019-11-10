@@ -86,7 +86,7 @@ export default function UploadFile() {
 						<Grid item xs={6}>
 							{uploading && <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>}
 							{!uploading && fileUrl !== "" && <div className='linkInfo'>
-								<h1>Share <a href={"www.shbt.live/" + fileUrl}>{"shbt.live/" + fileUrl}</a><br /> or scan </h1>
+								<h1>Share <a href={"/" + fileUrl}>{"shbt.live/" + fileUrl}</a><br /> or scan </h1>
 								<img src={"https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=http://www.shbt.live/" + fileUrl} alt="qr"></img>
 							</div>}
 						</Grid>
