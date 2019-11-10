@@ -20,18 +20,24 @@ connection.once('open', () => {
 	console.error('error connecting to the database');
 });
 
-console.log(__dirname+'/public/build');
-
-app.use('/',express.static(__dirname+'/../frontend-app/build'));
-// app.use('/download',express.static(__dirname+'/../frontend-download-app/build'));
-app.get('/:link',(req,res)=>{
-	res.sendFile('index.html',{root:__dirname+'/../frontend-download-app/build'});
-})
-
 app.use(cors());
 app.use(morgan('short'));
 app.use(express.json());
 app.use('/file', fileRouter);
+
+app.use(express.static(__dirname+'/../frontend-app/build'));
+app.use(express.static(__dirname+'/../frontend-download-app/build'));
+
+app.get('/',(req,res)=>{
+	const link=req.params.link
+	console.log(link)
+	res.sendFile('index.html',{root:__dirname+'/../frontend-app/build'});
+})
+app.get('/:link',(req,res)=>{
+	const link=req.params.link
+	console.log(link)
+	res.sendFile('index.html',{root:__dirname+'/../frontend-download-app/build'});
+})
 
 app.listen(port, () => {
 	console.log("server up on port " + port)
