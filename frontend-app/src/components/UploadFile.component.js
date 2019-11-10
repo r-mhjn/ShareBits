@@ -40,9 +40,13 @@ export default function UploadFile() {
 		// e.preventDefault();
 		// alert(fileInput.current.files[0].name);
 		let formdata = new FormData();
-		fileInput.current.files.forEach(file => {
+		console.log(fileInput.current.files)
+		// fileInput.current.files.forEach(file => {
+		// });
+		for (let i = 0; i < fileInput.current.files.length; i++) {
+			const file=fileInput.current.files[i]
 			formdata.append('file', file);
-		});
+		}
 		setUploading(true);
 		Axios.post('http://www.shbt.live/file/upload', formdata, {
 			headers: {
@@ -70,7 +74,7 @@ export default function UploadFile() {
 							<input
 								accept=""
 								id="outlined-button-file"
-								multiple
+								multiple={true}
 								type="file"
 								style={{ display: "none" }}
 								ref={fileInput}
