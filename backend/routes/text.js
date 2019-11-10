@@ -25,7 +25,7 @@ router.route('/upload').post((req, res) => {
 router.route('/download/:link').get((req, res) => {
 	Text.findOne({ url: req.params.link })
 		.then(text => {
-			res.send(text);
+			res.send(text.data);
 		})
 		.catch(err => {
 			res.status(400).json(err);
